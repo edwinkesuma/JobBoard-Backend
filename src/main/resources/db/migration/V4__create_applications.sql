@@ -1,0 +1,12 @@
+CREATE TABLE applications (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    job_id BIGINT NOT NULL,
+    user_id BIGINT NOT NULL,
+    resume_url VARCHAR(255),
+    cover_letter TEXT,
+    status ENUM('PENDING','REVIEWED','ACCEPTED','REJECTED') DEFAULT 'PENDING',
+    applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (job_id) REFERENCES jobs(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
