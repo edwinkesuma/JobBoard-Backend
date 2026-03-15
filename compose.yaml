@@ -3,12 +3,12 @@ services:
     image: 'mysql:latest'
     container_name: 'JobBoard'
     environment:
-      - 'MYSQL_DATABASE=jobboarddb'
-      - 'MYSQL_PASSWORD=secret'
-      - 'MYSQL_ROOT_PASSWORD=verysecret'
-      - 'MYSQL_USER=myuser'
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_USER: ${DATABASE_USERNAME}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
-      - '3307:3306'
+      - '${DATABASE_PORT}:3306'
     volumes:
       - mysql_data:/var/lib/mysql
 
