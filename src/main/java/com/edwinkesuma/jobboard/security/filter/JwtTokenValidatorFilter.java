@@ -87,6 +87,8 @@ public class JwtTokenValidatorFilter extends OncePerRequestFilter {
         log.debug("should not filter");
 
         String path = request.getServletPath();
-        return publicPaths.stream().anyMatch(publicPath -> pathMatcher.match(publicPath, path));
+
+        return publicPaths.stream()
+                .anyMatch(path::startsWith);
     }
 }

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/auth")
@@ -62,7 +63,7 @@ public class AuthController {
     @PostMapping("/register/public")
     public ResponseEntity<?> registerUser(@RequestBody RegisterRequestDto registerRequestDto) {
         if (jobBoardUserRepository.existsByEmail(registerRequestDto.email())) {
-            return ResponseEntity.badRequest().body("Email already registered");
+            return ResponseEntity.badRequest().body(Map.of("message", "Email already registered"));
         }
 
         if (registerRequestDto.role() == null || registerRequestDto.role() == Role.ADMIN) {
